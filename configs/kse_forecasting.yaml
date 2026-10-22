@@ -1,0 +1,67 @@
+# Kuramoto-Sivashinsky Forecasting Configuration, prediction horizon 5
+
+# Dataset parameters
+dataset:
+  saved_data_dir: "${TNO_DATA_DIR}/KuramotoSivashinsky/forecasting_h5"
+  dyn_sys_name: 'KuramotoSivashinsky'
+  T: 100.0
+  T_in: 100.0
+  dt: 0.25
+  sample_rate: 0.25
+  burn_in_time: 200.0
+  prediction_horizon: 5
+  compositions: 100  # Evaluation rollout of 500 time units
+  input_inds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  output_inds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  n_trajectories_train: 80000
+  n_trajectories_val: 2000
+  n_trajectories_test: 2000
+  params:
+    state_dim: 128
+    domain_length: 101.0
+    init_ranges: [8, 1.0, 1.0]
+
+# Model parameters
+model:
+  d_model: 1024
+  nhead: 8
+  num_layers: 6
+  dim_feedforward: 1024
+  dropout: 0.0
+  activation: 'gelu'
+  use_positional_encoding: false
+  append_position_to_x: true
+  pos_enc_coeff: 2
+  domain_dim: 1
+  plot_inds: [8, 15]
+
+# Training parameters
+training:
+  batch_size: 64
+  learning_rate: 0.0001
+  max_epochs: 1000
+  max_time: "00:11:45:00"  # Training time limit (DD:HH:MM:SS) used for the paper runs
+  monitor_metric: 'loss/val/rel_L2'
+  lr_scheduler_params:
+    patience: 2
+    factor: 0.5
+  gradient_clip_val: 3.0
+  log_every_n_steps: 10
+  loss_name: 'l2_rel'
+
+# Experiment settings
+experiment:
+  project_name: 'KSE_Forecasting'
+  name: 'kse_forecasting_h5'
+  seed: 42
+
+evaluation:
+  checkpoint_path: null  # Set here or pass --checkpoint
+  system_name: 'KSE'
+  n_examples: 4  # Number of example plots to generate
+  save_plots: true
+  seed: 4
+
+# Data generation (scripts/generate_data.py); results can differ slightly between batch sizes
+data_generation:
+  batch_size: 5000

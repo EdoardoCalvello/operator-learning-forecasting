@@ -1,0 +1,67 @@
+# Lorenz96 Smoothing Configuration
+
+# Dataset parameters
+dataset:
+  saved_data_dir: "${TNO_DATA_DIR}/Lorenz96/smoothing"
+  dyn_sys_name: 'Lorenz96'
+  T: 5.0
+  dt: 0.02  # Standard integration step
+  sample_rate: 0.02
+  burn_in_time: 200.0  # Remove transients to ensure trajectory is on attractor
+  prediction_horizon: 0.0  # Smoothing (same time points)
+  # Observe 30 dimensions and reconstruct the remaining 10.
+  input_inds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38]
+  output_inds: [21,23,25,27,29,31,33,35,37,39]
+  n_trajectories_train: 10000
+  n_trajectories_val: 1000
+  n_trajectories_test: 1000
+  params:
+    state_dim: 40
+    forcing: 8.0
+    # Initial condition ranges: [min_deviation, max_deviation] from forcing
+    init_ranges: [-1, 1]
+
+# Model parameters
+model:
+  d_model: 128
+  nhead: 8
+  num_layers: 6
+  dim_feedforward: 128
+  dropout: 0.0
+  activation: 'gelu'
+  use_positional_encoding: False
+  append_position_to_x: true
+  pos_enc_coeff: 2
+  domain_dim: 1
+  plot_inds: [1]  # Plot a subset of output dimensions
+
+# Training parameters
+training:
+  batch_size: 16
+  learning_rate: 0.001
+  max_epochs: 1000
+  max_time: "00:06:45:00"  # Training time limit (DD:HH:MM:SS) used for the paper runs
+  monitor_metric: 'loss/val/rel_L2'
+  lr_scheduler_params:
+    patience: 10
+    factor: 0.5
+  gradient_clip_val: 10.0
+  log_every_n_steps: 10
+  loss_name: 'l2_rel'
+
+# Experiment settings
+experiment:
+  project_name: 'L96_Smoothing'
+  seed: 42
+
+evaluation:
+  checkpoint_path: null  # Set here or pass --checkpoint
+  system_name: 'L96'
+  n_examples: 4  # Number of example plots to generate
+  save_plots: true
+  seed: 4
+  compute_baseline: false
+
+# Data generation (scripts/generate_data.py); results can differ slightly between batch sizes
+data_generation:
+  batch_size: 1000

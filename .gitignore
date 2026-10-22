@@ -1,0 +1,35 @@
+# Generated data and experiment outputs
+data/
+outputs/
+evaluation_results/
+
+# Slurm logs
+*.out
+*.err
+*.log
+
+# Plots and tables
+*.png
+*.csv
+
+# Checkpoints and logs
+*.ckpt
+wandb/
+lightning_logs/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Environments
+.env
+.venv/
+venv/
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/

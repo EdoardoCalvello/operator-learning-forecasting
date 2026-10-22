@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper below."
+title: "Operator Learning for Smoothing and Forecasting (code)"
+repository-code: "https://github.com/EdoardoCalvello/operator-learning-forecasting"
+authors:
+  - family-names: Calvello
+    given-names: Edoardo
+  - family-names: Carlson
+    given-names: Elizabeth
+  - family-names: Kovachki
+    given-names: Nikola
+  - family-names: Manta
+    given-names: Michael N.
+  - family-names: Stuart
+    given-names: Andrew M.
+preferred-citation:
+  type: article
+  title: "Operator Learning for Smoothing and Forecasting"
+  authors:
+    - family-names: Calvello
+      given-names: Edoardo
+    - family-names: Carlson
+      given-names: Elizabeth
+    - family-names: Kovachki
+      given-names: Nikola
+    - family-names: Manta
+      given-names: Michael N.
+    - family-names: Stuart
+      given-names: Andrew M.
+  year: 2026
+  journal: "arXiv preprint"
+  identifiers:
+    - type: other
+      value: "arXiv:2603.20359"
+  url: "https://arxiv.org/abs/2603.20359"

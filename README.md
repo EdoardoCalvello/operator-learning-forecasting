@@ -1,6 +1,8 @@
 # TNO Data Assimilation
 
-Code and configurations for the experiments in our paper on Transformer Neural Operators (TNO)
+Code and configurations for the experiments in our paper
+[Operator Learning for Smoothing and Forecasting](https://arxiv.org/abs/2603.20359)
+on Transformer Neural Operators (TNO)
 for data assimilation in chaotic dynamical systems. Experiments cover **smoothing**
 (reconstructing unobserved state components from partial observations) and **forecasting**
 (predicting future states) on the Lorenz-63 (L63), Lorenz-96 (L96) and Kuramoto–Sivashinsky (KSE)
@@ -148,4 +150,20 @@ Results (tables, `summary.csv`, `baseline_results.csv`, plots) are written to th
 
 ```bash
 python -m unittest discover -s tests
+```
+
+## Citation
+
+If you use this code, please cite:
+
+```bibtex
+@misc{calvello2026operatorlearningsmoothingforecasting,
+      title={Operator Learning for Smoothing and Forecasting},
+      author={Edoardo Calvello and Elizabeth Carlson and Nikola Kovachki and Michael N. Manta and Andrew M. Stuart},
+      year={2026},
+      eprint={2603.20359},
+      archivePrefix={arXiv},
+      primaryClass={stat.ML},
+      url={https://arxiv.org/abs/2603.20359},
+}
 ```
